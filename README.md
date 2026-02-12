@@ -16,6 +16,7 @@ active-city-project/
 ├── notebooks/
 ├── scripts/
 │   ├── build_active_index.py
+│   ├── clean_notebooks.py
 │   └── run_optional_ml_analysis.py
 ├── src/
 │   └── active_city/
@@ -77,6 +78,17 @@ python scripts/run_optional_ml_analysis.py
 Erzeugt:
 - `data/processed/muc_active_city_ml_typology.csv`
 - `data/processed/muc_active_city_ml_summary.txt`
+
+### D) Notebook-Cleanup (Best-Practice-Struktur)
+
+```bash
+python scripts/clean_notebooks.py
+```
+
+Wirkung:
+- einheitliche Intro-Struktur je Notebook,
+- bereinigte Zell-Metadaten,
+- Outputs und Execution-Counts entfernt (saubere Commits, reproduzierbarer Lauf).
 
 ## Tests
 
