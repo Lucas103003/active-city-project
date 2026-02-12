@@ -1,8 +1,8 @@
 # Methodik - Active City Munich
 
 ## Ziel
-Ein transparenter, reproduzierbarer Bezirksvergleich zu bewegungsrelevanter
-Infrastruktur (Gruen, Sport, Mobilitaet) fuer die 25 Stadtbezirke Muenchens.
+Ein transparenter Bezirksvergleich zu bewegungsrelevanter Infrastruktur
+(Gruen, Sport, Mobilitaet) fuer die 25 Stadtbezirke Muenchens.
 
 ## Datengrundlage
 - Raumbezug: Stadt Muenchen, 25 Stadtbezirke
@@ -19,12 +19,12 @@ Pro Bezirk werden genutzt:
 - `radweg_km_pro_km2`
 
 ## Normalisierung
-Standardmaessig Min-Max:
+Min-Max-Standardisierung:
 
 `x_norm = (x - min(x)) / (max(x) - min(x))`
 
-Sonderfall: Wenn `max(x) == min(x)`, wird stabil `0.0` vergeben
-(Vermeidung Division durch 0).
+Hinweis: Bei konstanten Reihen muss der Sonderfall `max(x) == min(x)` sauber
+behandelt werden, um Division durch 0 zu vermeiden.
 
 ## Teilindizes
 - `index_gruen` = Mittelwert der normalisierten Gruen-Indikatoren
@@ -36,28 +36,10 @@ Baseline:
 
 `active_city_index = (1/3)*index_gruen + (1/3)*index_sport + (1/3)*index_mobil`
 
-## Robustheitschecks
-1. Gewichtungsszenarien:
-- equal: 0.33 / 0.33 / 0.33
-- green_focus: 0.50 / 0.25 / 0.25
-- sport_focus: 0.25 / 0.50 / 0.25
-- mob_focus: 0.25 / 0.25 / 0.50
+## Robustheitsidee
+Im Notebook 05 werden zusaetzliche Gewichtungsszenarien und Rangvergleiche
+explorativ geprueft (z. B. Green-/Sport-/Mobility-Fokus).
 
-Export: `data/processed/muc_active_city_weight_scenarios.csv`
-
-2. Leave-one-out (Indikator entfernen, Rangstabilitaet mit Spearman):
-
-Export: `data/processed/muc_active_city_leave_one_out.csv`
-
-## Optionale Erweiterung (ML)
-PCA + Clustering auf den Bezirksprofilen:
-- Script: `scripts/run_optional_ml_analysis.py`
-- Exporte:
-  - `data/processed/muc_active_city_ml_typology.csv`
-  - `data/processed/muc_active_city_ml_summary.txt`
-
-## Optionale soziooekonomische Merkmale
-Falls verfuegbar, koennen z. B. Altersstruktur oder Einkommen pro Bezirk
-hinzugefuegt werden. Ein Template liegt hier:
-
-`data/raw/muc_socioeconomic_optional_template.csv`
+## Optionale Erweiterung
+- weitere soziooekonomische Bezirkseigenschaften
+- Typisierung ueber PCA/Clusterverfahren

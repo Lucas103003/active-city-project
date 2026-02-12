@@ -15,15 +15,7 @@ active-city-project/
 │   └── methodik.md
 ├── notebooks/
 ├── scripts/
-│   ├── build_active_index.py
-│   ├── clean_notebooks.py
-│   └── run_optional_ml_analysis.py
-├── src/
-│   └── active_city/
-│       ├── __init__.py
-│       └── index.py
-├── tests/
-│   └── test_index.py
+│   └── clean_notebooks.py
 ├── requirements.txt
 └── README.md
 ```
@@ -42,13 +34,10 @@ Pflichtdaten:
 - `data/raw/muc_stadtbezirke.geojson`
 - `data/raw/bev_stadtbezirke.csv`
 
-Optional fuer Erweiterung:
-- `data/raw/muc_socioeconomic_optional.csv`
-  - Vorlage: `data/raw/muc_socioeconomic_optional_template.csv`
+## Pipeline (Notebook-First)
 
-## Pipeline
+Fuehre die Notebooks in dieser Reihenfolge aus:
 
-### A) Notebook-basierter Vollprozess
 1. `notebooks/00_env_check.ipynb`
 2. `notebooks/01_muc_bezirke_und_bevoelkerung.ipynb`
 3. `notebooks/02_osm_parks_muc.ipynb`
@@ -56,30 +45,14 @@ Optional fuer Erweiterung:
 5. `notebooks/04_mobility_muc.ipynb`
 6. `notebooks/05_active_index_setup.ipynb`
 
-### B) Reproduzierbarer Build aus vorhandenen Zwischenstaenden
+## Wichtigste Outputs
 
-```bash
-python scripts/build_active_index.py
-```
-
-Erzeugt:
+Nach erfolgreichem Lauf:
 - `data/processed/muc_active_city_index.csv`
 - `data/processed/muc_active_city_index.geojson`
 - `data/processed/muc_active_city_index.gpkg`
-- `data/processed/muc_active_city_weight_scenarios.csv`
-- `data/processed/muc_active_city_leave_one_out.csv`
 
-### C) Optionale ML-Analyse (PCA + Clustering)
-
-```bash
-python scripts/run_optional_ml_analysis.py
-```
-
-Erzeugt:
-- `data/processed/muc_active_city_ml_typology.csv`
-- `data/processed/muc_active_city_ml_summary.txt`
-
-### D) Notebook-Cleanup (Best-Practice-Struktur)
+## Notebook-Cleanup (optional)
 
 ```bash
 python scripts/clean_notebooks.py
@@ -88,33 +61,15 @@ python scripts/clean_notebooks.py
 Wirkung:
 - einheitliche Intro-Struktur je Notebook,
 - bereinigte Zell-Metadaten,
-- Outputs und Execution-Counts entfernt (saubere Commits, reproduzierbarer Lauf).
-
-## Tests
-
-```bash
-python -m unittest tests/test_index.py
-```
-
-Abgedeckt sind u. a.:
-- robuste Normalisierung bei konstanten Werten,
-- Index-Berechnung,
-- Gewichtungsvalidierung,
-- Sensitivitaetsausgaben.
+- Outputs und Execution-Counts entfernt (saubere Commits).
 
 ## Methodik
 
 Details in:
 - `docs/methodik.md`
 
-Kurz:
-- Min-Max-Normalisierung,
-- Teilindizes: Gruen, Sport, Mobilitaet,
-- Gesamtindex mit Baseline-Gewichtung 1/3, 1/3, 1/3,
-- Robustheitschecks ueber Gewichtungsszenarien und Leave-one-out.
-
 ## Hinweise zur Reproduzierbarkeit
 
 - Notebook-Pfade sind relativ zum `notebooks/`-Ordner (`Path("..")`).
 - OSM-basierte Schritte koennen sich ueber die Zeit leicht aendern.
-- Das Verzeichnis `notebooks/cache/` enthaelt zwischengespeicherte API-Antworten.
+- `notebooks/cache/` enthaelt zwischengespeicherte API-Antworten.
