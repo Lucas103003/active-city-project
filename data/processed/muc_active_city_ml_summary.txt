@@ -1,0 +1,10 @@
+PCA explained variance ratio
+PC1: 0.509428
+PC2: 0.275719
+Cumulative: 0.785147
+
+Cluster sizes (k=4)
+cluster_0: 7
+cluster_1: 2
+cluster_2: 6
+cluster_3: 10

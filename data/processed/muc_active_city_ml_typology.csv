@@ -1,0 +1,26 @@
+bez_nr,name,active_city_index,pca_1,pca_2,cluster_k4
+1,Altstadt-Lehel,0.619496,3.647205,-3.964989,1
+2,Ludwigsvorstadt-Isarvorstadt,0.270103,-0.033040,-1.191315,0
+3,Maxvorstadt,0.310484,-0.575645,-1.829240,2
+4,Schwabing-West,0.211803,-1.681445,-0.046704,0
+5,Au-Haidhausen,0.279380,-0.756860,-0.350001,0
+6,Sendling,0.423638,-0.069046,1.172653,3
+7,Sendling-Westpark,0.392968,-0.207516,1.319308,3
+8,Schwanthalerhöhe,0.204631,-1.061399,0.389918,0
+9,Neuhausen-Nymphenburg,0.300002,-0.883733,-0.481242,2
+10,Moosach,0.414712,1.026971,0.317802,3
+11,Milbertshofen-Am Hart,0.499102,0.960594,2.533371,3
+12,Schwabing-Freimann,0.441562,0.768217,1.323702,3
+13,Bogenhausen,0.364231,0.011574,0.120083,3
+14,Berg am Laim,0.295429,-0.177517,-0.698270,2
+15,Trudering-Riem,0.520589,1.407912,-0.242162,3
+16,Ramersdorf-Perlach,0.380855,0.096018,1.696318,3
+17,Obergiesing-Fasangarten,0.243403,-0.962975,0.738016,0
+18,Untergiesing-Harlaching,0.419489,0.194304,0.747372,3
+19,Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln,0.748611,5.497623,0.284332,1
+20,Hadern,0.030244,-3.880077,-0.343999,0
+21,Pasing-Obermenzing,0.289416,-0.734674,-0.686773,2
+22,Aubing-Lochhausen-Langwied,0.562677,2.561171,1.819183,3
+23,Allach-Untermenzing,0.076877,-3.086938,-0.541701,0
+24,Feldmoching-Hasenbergl,0.238605,-1.565870,0.519075,2
+25,Laim,0.248932,-0.494854,-2.604738,2
