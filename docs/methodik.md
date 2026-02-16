@@ -43,3 +43,7 @@ explorativ geprueft (z. B. Green-/Sport-/Mobility-Fokus).
 ## Optionale Erweiterung
 - weitere soziooekonomische Bezirkseigenschaften
 - Typisierung ueber PCA/Clusterverfahren
+- Qualitaetsindikatoren:
+  - Parkzugaenglichkeit (Public/Fee-Proxy)
+  - Sportanlagen-Typendiversitaet und Oeffentlichkeit
+  - Radweg-Sicherheit (Anteil geschuetzter Radinfrastruktur)
