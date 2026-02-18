@@ -49,7 +49,6 @@ NB_INFO = {
     },
 }
 
-
 def make_intro(filename: str) -> nbformat.NotebookNode:
     meta = NB_INFO.get(filename)
     if not meta:
@@ -65,17 +64,32 @@ def make_intro(filename: str) -> nbformat.NotebookNode:
 
     text = (
         f"# {title}\n\n"
-        "## Ziel\n"
-        f"{goal}\n\n"
-        "## Inputs\n"
-        f"- {inputs}\n\n"
-        "## Outputs\n"
-        f"- {outputs}\n\n"
-        "## Ausfuehrung\n"
-        "- Von oben nach unten ausfuehren (Restart & Run All).\n"
-        "- Dieses Notebook ist Teil der Pipeline 00 -> 05.\n"
+        f"**Ziel:** {goal}\n\n"
+        f"**Inputs:** {inputs}\n\n"
+        f"**Outputs:** {outputs}\n\n"
+        "**Ausfuehrung:** Von oben nach unten ausfuehren (Restart & Run All). "
+        "Dieses Notebook ist Teil der Pipeline 00 -> 05.\n"
     )
     return nbformat.v4.new_markdown_cell(text)
+
+
+def source_text(cell: nbformat.NotebookNode) -> str:
+    source = cell.get("source", "")
+    if isinstance(source, list):
+        return "".join(source)
+    return str(source)
+
+
+def drop_section_cells(cells: list[nbformat.NotebookNode]) -> list[nbformat.NotebookNode]:
+    cleaned = []
+    for cell in cells:
+        if cell.get("cell_type") != "markdown":
+            cleaned.append(cell)
+            continue
+        if "ACI-SECTION:" in source_text(cell):
+            continue
+        cleaned.append(cell)
+    return cleaned
 
 
 def clean_notebook(path: Path) -> None:
@@ -92,10 +106,12 @@ def clean_notebook(path: Path) -> None:
     intro = make_intro(path.name)
 
     cells = nb.cells
-    if cells and cells[0].get("cell_type") == "markdown" and "## Ziel" in "".join(cells[0].get("source", [])):
+    if cells and cells[0].get("cell_type") == "markdown":
         cells[0] = intro
     else:
         cells = [intro] + cells
+
+    cells = drop_section_cells(cells)
 
     for cell in cells:
         # keep notebook lean and review-friendly
