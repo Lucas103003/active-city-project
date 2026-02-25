@@ -1,0 +1,7 @@
+dimension,removed_indicator,spearman_rho
+green,parks_pro_1000_einw,0.9438
+green,parks_area_anteil_prozent,0.9323
+sport,sports_pro_1000_einw,0.9408
+sport,sports_area_anteil_prozent,0.9631
+mob,stops_pro_1000_einw,0.8662
+mob,radweg_km_pro_km2,0.8915

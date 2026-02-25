@@ -1,0 +1,5 @@
+bezirkstyp,anzahl_bezirke
+Typ D: schwaches Angebot + schwache Mobilitaet,10
+Typ A: starkes Angebot + starke Mobilitaet,8
+Typ B: starkes Angebot + schwache Mobilitaet,4
+Typ C: schwaches Angebot + starke Mobilitaet,3

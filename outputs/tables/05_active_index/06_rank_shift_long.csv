@@ -1,0 +1,26 @@
+name,delta_green_vs_equal,delta_sport_vs_equal,delta_mob_vs_equal,max_abs_delta
+Altstadt-Lehel,0,5,0,5
+Ludwigsvorstadt-Isarvorstadt,1,4,-6,6
+Maxvorstadt,-5,1,-1,5
+Schwabing-West,-2,1,0,2
+Au-Haidhausen,0,1,1,1
+Sendling,-1,0,-1,1
+Sendling-Westpark,1,-1,-1,1
+Schwanthalerhöhe,2,1,-4,4
+Neuhausen-Nymphenburg,-4,0,2,4
+Moosach,1,1,1,1
+Milbertshofen-Am Hart,2,-1,0,2
+Schwabing-Freimann,0,-2,1,2
+Bogenhausen,1,-1,-1,1
+Berg am Laim,-1,1,1,1
+Trudering-Riem,-1,-1,1,1
+Ramersdorf-Perlach,2,-1,-1,2
+Obergiesing-Fasangarten,3,0,0,3
+Untergiesing-Harlaching,1,0,0,1
+Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln,0,1,2,2
+Hadern,1,-2,1,2
+Pasing-Obermenzing,-1,1,-1,1
+Aubing-Lochhausen-Langwied,1,-3,4,4
+Allach-Untermenzing,-1,2,2,2
+Feldmoching-Hasenbergl,1,-7,1,7
+Laim,-1,0,-1,1
