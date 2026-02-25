@@ -2,6 +2,8 @@
 
 Dieses Projekt erstellt einen **Active City Index** fuer die 25 Muenchner
 Stadtbezirke auf Basis von Gruen-, Sport- und Mobilitaetsindikatoren.
+Die Analyse wird notebook-basiert aufgebaut und erzeugt berichtsfaehige
+Ergebnistabellen sowie Geodaten fuer Karten.
 
 ## Projektstruktur
 
@@ -45,12 +47,24 @@ Fuehre die Notebooks in dieser Reihenfolge aus:
 5. `notebooks/04_mobility_muc.ipynb`
 6. `notebooks/05_active_index_setup.ipynb`
 
+Hinweis: Am stabilsten ist `Restart & Run All` je Notebook.
+
 ## Wichtigste Outputs
 
 Nach erfolgreichem Lauf:
 - `data/processed/muc_active_city_index.csv`
 - `data/processed/muc_active_city_index.geojson`
 - `data/processed/muc_active_city_index.gpkg`
+- `data/processed/muc_active_city_quality_index.csv` (Enhanced/Quality-Teil)
+- `data/processed/muc_bezirke_parks.geojson`
+
+## Inhalte je Notebook (kurz)
+
+- `01_muc_bezirke_und_bevoelkerung.ipynb`: Bezirksbasis, Bevoelkerung, Flaeche, Dichte
+- `02_osm_parks_muc.ipynb`: Park-Indikatoren pro Bezirk (Anzahl, Flaeche, Anteile)
+- `03_osm_sport_muc.ipynb`: Sport-Indikatoren pro Bezirk (Anzahl, Flaeche, Anteile)
+- `04_mobility_muc.ipynb`: OePNV- und Radwege-Indikatoren
+- `05_active_index_setup.ipynb`: Indexbildung, Robustheit, optionale Qualitaetsindikatoren, Export
 
 ## Notebook-Cleanup (optional)
 
@@ -62,6 +76,12 @@ Wirkung:
 - einheitliche Intro-Struktur je Notebook,
 - bereinigte Zell-Metadaten,
 - Outputs und Execution-Counts entfernt (saubere Commits).
+
+## Validierung (empfohlen)
+
+- Notebook JSON-Validitaet pruefen (z. B. via `nbformat.validate`)
+- Nach groesseren Aenderungen mindestens Notebook 05 komplett ausfuehren
+- Exportdateien in `data/processed/` auf Aktualitaet pruefen
 
 ## Methodik
 
