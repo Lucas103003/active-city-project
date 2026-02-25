@@ -1,0 +1,26 @@
+bez_nr,name,active_city_index,index_gruen,index_sport,index_mobil
+1,Altstadt-Lehel,0.6510,0.9913,0.1474,0.8142
+11,Milbertshofen-Am Hart,0.5918,0.3096,0.9373,0.5286
+15,Trudering-Riem,0.5721,0.5197,0.7673,0.4292
+6,Sendling,0.5608,0.5211,0.6458,0.5156
+12,Schwabing-Freimann,0.5294,0.4361,0.7517,0.4005
+7,Sendling-Westpark,0.5109,0.4297,0.6418,0.4611
+18,Untergiesing-Harlaching,0.4817,0.3906,0.6305,0.4240
+10,Moosach,0.4542,0.3349,0.5644,0.4634
+16,Ramersdorf-Perlach,0.4454,0.1938,0.6429,0.4995
+9,Neuhausen-Nymphenburg,0.4236,0.7091,0.3462,0.2154
+21,Pasing-Obermenzing,0.3887,0.3919,0.4061,0.3680
+13,Bogenhausen,0.3675,0.2169,0.5012,0.3845
+14,Berg am Laim,0.3527,0.4427,0.2496,0.3659
+5,Au-Haidhausen,0.3228,0.2888,0.2785,0.4013
+19,Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln,0.3081,0.2324,0.2952,0.3965
+22,Aubing-Lochhausen-Langwied,0.2887,0.1393,0.4996,0.2272
+23,Allach-Untermenzing,0.2796,0.2316,0.2305,0.3768
+17,Obergiesing-Fasangarten,0.2676,0.0638,0.3125,0.4264
+2,Ludwigsvorstadt-Isarvorstadt,0.2594,0.0940,0.0351,0.6491
+8,Schwanthalerhöhe,0.2579,0.0753,0.1238,0.5747
+4,Schwabing-West,0.2382,0.1851,0.1516,0.3780
+20,Hadern,0.2207,0.1356,0.2671,0.2595
+3,Maxvorstadt,0.2199,0.2638,0.0612,0.3347
+24,Feldmoching-Hasenbergl,0.2193,0.0470,0.4867,0.1244
+25,Laim,0.1880,0.1997,0.0807,0.2838

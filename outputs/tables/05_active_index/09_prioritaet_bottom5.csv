@@ -1,0 +1,6 @@
+bez_nr,name,active_city_index,index_gruen,index_sport,index_mobil,schwaechste_dimension
+25,Laim,0.1880,0.1997,0.0807,0.2838,Sport
+24,Feldmoching-Hasenbergl,0.2193,0.0470,0.4867,0.1244,Gruen
+3,Maxvorstadt,0.2199,0.2638,0.0612,0.3347,Sport
+20,Hadern,0.2207,0.1356,0.2671,0.2595,Gruen
+4,Schwabing-West,0.2382,0.1851,0.1516,0.3780,Sport

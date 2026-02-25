@@ -1,0 +1,26 @@
+bez_nr,name,stadtbezirk,einwohner,flaeche_ha,einwohnerdichte,parks_count,parks_area_ha,parks_pro_1000_einw,parks_area_ha_pro_1000_einw,parks_area_anteil_prozent
+1,Altstadt-Lehel,Altstadt - Lehel,20876,314.5900,66.0000,27,81.2284,1.2934,3.8910,25.8204
+2,Ludwigsvorstadt-Isarvorstadt,Ludwigsvorstadt - Isarvorstadt,50081,440.1700,114.0000,21,21.1862,0.4193,0.4230,4.8132
+3,Maxvorstadt,Maxvorstadt,52434,429.8200,122.0000,34,30.9750,0.6484,0.5907,7.2065
+4,Schwabing-West,Schwabing West,68610,436.3300,157.0000,23,49.0394,0.3352,0.7148,11.2391
+5,Au-Haidhausen,Au - Haidhausen,63972,422.0000,152.0000,36,44.4144,0.5627,0.6943,10.5247
+6,Sendling,Sendling,41002,393.8900,104.0000,19,94.7531,0.4634,2.3109,24.0557
+7,Sendling-Westpark,Sendling - Westpark,62240,781.4900,80.0000,35,134.7501,0.5623,2.1650,17.2427
+8,Schwanthalerhöhe,Schwanthalerhöhe,28684,207.0300,139.0000,10,11.7624,0.3486,0.4101,5.6815
+9,Neuhausen-Nymphenburg,Neuhausen - Nymphenburg,101901,1291.4900,79.0000,75,338.8135,0.7360,3.3249,26.2343
+10,Moosach,Moosach,56015,1109.3700,50.0000,45,74.8055,0.8034,1.3355,6.7431
+11,Milbertshofen-Am Hart,Milbertshofen - Am Hart,77281,1341.7200,58.0000,40,169.5587,0.5176,2.1941,12.6374
+12,Schwabing-Freimann,Schwabing - Freimann,77092,2567.4800,30.0000,45,436.9034,0.5837,5.6673,17.0168
+13,Bogenhausen,Bogenhausen,95475,2371.3000,40.0000,53,172.8976,0.5551,1.8109,7.2913
+14,Berg am Laim,Berg am Laim,47367,631.5300,75.0000,42,61.9092,0.8867,1.3070,9.8031
+15,Trudering-Riem,Trudering - Riem,76280,2245.3900,34.0000,80,212.0237,1.0488,2.7795,9.4426
+16,Ramersdorf-Perlach,Ramersdorf - Perlach,120776,1989.7100,61.0000,57,164.2909,0.4719,1.3603,8.2570
+17,Obergiesing-Fasangarten,Obergiesing - Fasangarten,54352,572.0900,95.0000,22,21.3916,0.4048,0.3936,3.7392
+18,Untergiesing-Harlaching,Untergiesing - Harlaching,54067,805.7200,67.0000,39,92.1242,0.7213,1.7039,11.4338
+19,Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln,Thalkirchen - Obersendling - Forstenried - Fürstenried - Solln,103717,1776.3500,58.0000,65,111.0470,0.6267,1.0707,6.2514
+20,Hadern,Hadern,51637,922.3800,56.0000,28,34.4832,0.5422,0.6678,3.7385
+21,Pasing-Obermenzing,Pasing - Obermenzing,81804,1649.7500,50.0000,74,114.4722,0.9046,1.3993,6.9388
+22,Aubing-Lochhausen-Langwied,Aubing - Lochhausen - Langwied,61011,3405.7300,18.0000,34,120.6616,0.5573,1.9777,3.5429
+23,Allach-Untermenzing,Allach - Untermenzing,36230,1545.1200,23.0000,27,50.4628,0.7452,1.3928,3.2659
+24,Feldmoching-Hasenbergl,Feldmoching - Hasenbergl,63756,2893.8500,22.0000,27,71.5552,0.4235,1.1223,2.4727
+25,Laim,Laim,57116,528.6000,108.0000,41,12.8300,0.7178,0.2246,2.4272
