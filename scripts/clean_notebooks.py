@@ -1,135 +1,110 @@
 #!/usr/bin/env python3
-"""Standardize project notebooks to a clean, reproducible structure."""
+"""Set execution_count to null for code cells in Jupyter notebooks.
+
+By default, scans the ./notebooks directory recursively.
+Does not modify outputs or markdown content.
+"""
 
 from __future__ import annotations
 
+import argparse
+import json
 from pathlib import Path
-
-import nbformat
-
-ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOK_DIR = ROOT / "notebooks"
-
-NB_INFO = {
-    "00_env_check.ipynb": {
-        "title": "00 - Environment Check",
-        "goal": "Prueft Python- und Geospatial-Abhaengigkeiten fuer den Projektlauf.",
-        "inputs": "Keine Projektdateien erforderlich.",
-        "outputs": "Sichtpruefung der installierten Paketversionen.",
-    },
-    "01_muc_bezirke_und_bevoelkerung.ipynb": {
-        "title": "01 - Bezirke und Bevoelkerung",
-        "goal": "Bereitet Bezirksgrenzen und Bevoelkerungsdaten als Basisdatensatz auf.",
-        "inputs": "data/raw/muc_stadtbezirke.geojson, data/raw/bev_stadtbezirke.csv",
-        "outputs": "data/interim/muc_bezirke_bev_clean.geojson",
-    },
-    "02_osm_parks_muc.ipynb": {
-        "title": "02 - Parks pro Bezirk",
-        "goal": "Ermittelt Parkindikatoren pro Stadtbezirk auf OSM-Basis.",
-        "inputs": "data/interim/muc_bezirke_bev_clean.geojson, OSM-Parks",
-        "outputs": "data/processed/muc_bezirke_parks.geojson",
-    },
-    "03_osm_sport_muc.ipynb": {
-        "title": "03 - Sportstaetten pro Bezirk",
-        "goal": "Ermittelt Sportinfrastruktur-Indikatoren pro Stadtbezirk auf OSM-Basis.",
-        "inputs": "data/interim/muc_bezirke_bev_clean.geojson, OSM-Sportstaetten",
-        "outputs": "data/processed/muc_bezirke_sport.geojson",
-    },
-    "04_mobility_muc.ipynb": {
-        "title": "04 - Mobilitaet pro Bezirk",
-        "goal": "Ermittelt OePNV- und Radwegeindikatoren pro Stadtbezirk auf OSM-Basis.",
-        "inputs": "data/interim/muc_bezirke_bev_clean.geojson, OSM-Haltestellen, OSM-Radwege",
-        "outputs": "data/processed/muc_bezirke_mobility.geojson",
-    },
-    "05_active_index_setup.ipynb": {
-        "title": "05 - Active City Index",
-        "goal": "Fuehrt alle Teilindikatoren zusammen und berechnet den Active City Index.",
-        "inputs": "interim + processed Indikator-Dateien aus 01-04",
-        "outputs": "data/processed/muc_active_city_index.(csv|geojson|gpkg)",
-    },
-}
-
-def make_intro(filename: str) -> nbformat.NotebookNode:
-    meta = NB_INFO.get(filename)
-    if not meta:
-        title = filename.replace(".ipynb", "")
-        goal = "Notebook im Active-City-Workflow."
-        inputs = "Siehe Notebook-Code"
-        outputs = "Siehe Notebook-Code"
-    else:
-        title = meta["title"]
-        goal = meta["goal"]
-        inputs = meta["inputs"]
-        outputs = meta["outputs"]
-
-    text = (
-        f"# {title}\n\n"
-        f"**Ziel:** {goal}\n\n"
-        f"**Inputs:** {inputs}\n\n"
-        f"**Outputs:** {outputs}\n\n"
-        "**Ausfuehrung:** Von oben nach unten ausfuehren (Restart & Run All). "
-        "Dieses Notebook ist Teil der Pipeline 00 -> 05.\n"
-    )
-    return nbformat.v4.new_markdown_cell(text)
+from typing import Iterable
 
 
-def source_text(cell: nbformat.NotebookNode) -> str:
-    source = cell.get("source", "")
-    if isinstance(source, list):
-        return "".join(source)
-    return str(source)
+def iter_notebooks(paths: Iterable[Path]) -> list[Path]:
+    files: list[Path] = []
+    for p in paths:
+        if p.is_file() and p.suffix == ".ipynb":
+            files.append(p)
+        elif p.is_dir():
+            files.extend(sorted(p.rglob("*.ipynb")))
+    return sorted(set(files))
 
 
-def drop_section_cells(cells: list[nbformat.NotebookNode]) -> list[nbformat.NotebookNode]:
-    cleaned = []
-    for cell in cells:
-        if cell.get("cell_type") != "markdown":
-            cleaned.append(cell)
+def clean_execution_counts(nb_path: Path) -> tuple[bool, int]:
+    data = json.loads(nb_path.read_text(encoding="utf-8"))
+    changed = 0
+
+    for cell in data.get("cells", []):
+        if cell.get("cell_type") != "code":
             continue
-        if "ACI-SECTION:" in source_text(cell):
-            continue
-        cleaned.append(cell)
-    return cleaned
-
-
-def clean_notebook(path: Path) -> None:
-    nb = nbformat.read(path, as_version=4)
-
-    # Normalize top-level metadata for consistency
-    nb.metadata.setdefault("kernelspec", {})
-    nb.metadata["kernelspec"]["name"] = "python3"
-    nb.metadata["kernelspec"]["display_name"] = ".venv"
-    nb.metadata["kernelspec"]["language"] = "python"
-    nb.metadata.setdefault("language_info", {})
-    nb.metadata["language_info"]["name"] = "python"
-
-    intro = make_intro(path.name)
-
-    cells = nb.cells
-    if cells and cells[0].get("cell_type") == "markdown":
-        cells[0] = intro
-    else:
-        cells = [intro] + cells
-
-    cells = drop_section_cells(cells)
-
-    for cell in cells:
-        # keep notebook lean and review-friendly
-        cell["metadata"] = {}
-        if cell.get("cell_type") == "code":
-            cell["outputs"] = []
+        if cell.get("execution_count") is not None:
             cell["execution_count"] = None
+            changed += 1
 
-    nb.cells = cells
-    nbformat.write(nb, path)
+    if changed:
+        nb_path.write_text(
+            json.dumps(data, ensure_ascii=False, indent=1) + "\n",
+            encoding="utf-8",
+        )
+
+    return (changed > 0, changed)
 
 
-def main() -> None:
-    notebooks = sorted(NOTEBOOK_DIR.glob("*.ipynb"))
-    for nb_path in notebooks:
-        clean_notebook(nb_path)
-        print(f"Cleaned: {nb_path}")
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Set execution_count to null in .ipynb files."
+    )
+    parser.add_argument(
+        "paths",
+        nargs="*",
+        default=["notebooks"],
+        help="Files or directories to scan (default: notebooks)",
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Only check if changes are needed; do not write files.",
+    )
+    args = parser.parse_args()
+
+    targets = iter_notebooks([Path(p) for p in args.paths])
+    if not targets:
+        print("No notebooks found.")
+        return 0
+
+    changed_files = 0
+    changed_cells_total = 0
+
+    if args.check:
+        for nb in targets:
+            data = json.loads(nb.read_text(encoding="utf-8"))
+            dirty_cells = sum(
+                1
+                for cell in data.get("cells", [])
+                if cell.get("cell_type") == "code"
+                and cell.get("execution_count") is not None
+            )
+            if dirty_cells:
+                changed_files += 1
+                changed_cells_total += dirty_cells
+                print(f"needs-clean: {nb} ({dirty_cells} cells)")
+
+        if changed_files:
+            print(
+                f"Execution counts need cleaning in {changed_files} notebooks "
+                f"({changed_cells_total} cells)."
+            )
+            return 1
+
+        print("All notebooks already clean.")
+        return 0
+
+    for nb in targets:
+        file_changed, changed_cells = clean_execution_counts(nb)
+        if file_changed:
+            changed_files += 1
+            changed_cells_total += changed_cells
+            print(f"cleaned: {nb} ({changed_cells} cells)")
+
+    print(
+        f"Done. Cleaned {changed_files} notebooks "
+        f"({changed_cells_total} cells set to null)."
+    )
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
