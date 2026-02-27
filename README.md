@@ -31,13 +31,66 @@ active-city-project/
 └── README.md
 ```
 
-## Setup
+## Setup und erste Ausfuehrung
+
+### Schritt 1: Repository klonen
+
+```bash
+git clone <REPO_URL>
+cd active-city-project
+```
+
+### Schritt 2: Virtuelle Umgebung erstellen und aktivieren
+
+macOS/Linux:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+Windows PowerShell:
+
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Windows CMD:
+
+```cmd
+py -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+### Schritt 3: Abhaengigkeiten installieren
+
+```bash
 pip install -r requirements.txt
 ```
+
+### Schritt 4: Jupyter starten
+
+```bash
+jupyter lab
+```
+
+Alternative:
+
+```bash
+jupyter notebook
+```
+
+### Schritt 5: Notebooks in Reihenfolge ausfuehren
+
+1. `notebooks/00_env_check.ipynb`
+2. `notebooks/01_muc_bezirke_und_bevoelkerung.ipynb`
+3. `notebooks/02_osm_parks_muc.ipynb`
+4. `notebooks/03_osm_sport_muc.ipynb`
+5. `notebooks/04_mobility_muc.ipynb`
+6. `notebooks/05_active_index_setup.ipynb`
+
+Empfehlung: In jedem Notebook `Restart & Run All` nutzen.
 
 ## Eingabedaten
 
@@ -49,16 +102,7 @@ Pflichtdaten in `data/raw/`:
 
 ## Pipeline (Notebook-First)
 
-Die Notebooks in dieser Reihenfolge ausfuehren:
-
-1. `notebooks/00_env_check.ipynb`
-2. `notebooks/01_muc_bezirke_und_bevoelkerung.ipynb`
-3. `notebooks/02_osm_parks_muc.ipynb`
-4. `notebooks/03_osm_sport_muc.ipynb`
-5. `notebooks/04_mobility_muc.ipynb`
-6. `notebooks/05_active_index_setup.ipynb`
-
-Empfehlung: Pro Notebook `Restart & Run All` verwenden.
+Die fachliche Pipeline entspricht der Reihenfolge aus dem Setup-Schritt 5.
 
 ## Inhalte je Notebook (kurz)
 
