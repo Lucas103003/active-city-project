@@ -1,4 +1,4 @@
-# Active City Project (Munich)
+# Active City Project (München)
 
 Dieses Projekt erstellt einen **Active City Index** fuer die 25 Muenchner Stadtbezirke.
 Die Analyse kombiniert Gruenflaechen-, Sport- und Mobilitaetsindikatoren auf Basis von
@@ -81,6 +81,10 @@ Alternative:
 jupyter notebook
 ```
 
+Optional: Die Notebooks koennen auch in VS Code ausgefuehrt werden (Extensions
+`Python` und `Jupyter` erforderlich). Die empfohlene Standardausfuehrung bleibt
+JupyterLab/Jupyter Notebook ueber den lokalen Jupyter-Server.
+
 ### Schritt 5: Notebooks in Reihenfolge ausfuehren
 
 1. `notebooks/00_env_check.ipynb`
@@ -91,6 +95,8 @@ jupyter notebook
 6. `notebooks/05_active_index_setup.ipynb`
 
 Empfehlung: In jedem Notebook `Restart & Run All` nutzen.
+Hinweis: Das Laden der OSM-Daten (insbesondere in Notebook 02-04) kann je nach
+Internetverbindung und API-Antwortzeit einige Minuten dauern.
 
 ## Eingabedaten
 
