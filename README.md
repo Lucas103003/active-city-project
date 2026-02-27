@@ -1,22 +1,30 @@
 # Active City Project (Munich)
 
-Dieses Projekt erstellt einen **Active City Index** fuer die 25 Muenchner
-Stadtbezirke auf Basis von Gruen-, Sport- und Mobilitaetsindikatoren.
-Die Analyse wird notebook-basiert aufgebaut und erzeugt berichtsfaehige
-Ergebnistabellen sowie Geodaten fuer Karten.
+Dieses Projekt erstellt einen **Active City Index** fuer die 25 Muenchner Stadtbezirke.
+Die Analyse kombiniert Gruenflaechen-, Sport- und Mobilitaetsindikatoren auf Basis von
+Geo- und OSM-Daten und erzeugt reproduzierbare Ergebnisse fuer Bericht und Karten.
+
+## Zielbild
+
+- Vergleichbare Kennzahlen auf Bezirksebene erzeugen
+- Einen transparenten, gewichtbaren Gesamtindex berechnen
+- Ergebnisartefakte fuer Paper/Report exportieren (Tabellen, Karten, Geodaten)
 
 ## Projektstruktur
 
 ```text
 active-city-project/
 ├── data/
-│   ├── raw/
-│   ├── interim/
-│   └── processed/
+│   ├── raw/                 # Eingangsdaten (GeoJSON, CSV)
+│   ├── interim/             # Zwischenergebnisse
+│   └── processed/           # Finale Index- und Indikator-Daten
 ├── docs/
-│   └── methodik.md
-    └── index_overview.html
-├── notebooks/
+│   ├── methodik.md
+│   ├── index_overview.html
+├── notebooks/               # 00 bis 05 Analyse-Workflow
+├── outputs/
+│   ├── figures/             # Exportierte Abbildungen je Notebook
+│   └── tables/              # Exportierte Tabellen je Notebook
 ├── scripts/
 │   └── clean_notebooks.py
 ├── requirements.txt
@@ -33,13 +41,15 @@ pip install -r requirements.txt
 
 ## Eingabedaten
 
-Pflichtdaten:
-- `data/raw/muc_stadtbezirke.geojson`
-- `data/raw/bev_stadtbezirke.csv`
+Pflichtdaten in `data/raw/`:
+- `muc_stadtbezirke.geojson`
+- `bev_stadtbezirke.csv`
+
+
 
 ## Pipeline (Notebook-First)
 
-Fuehre die Notebooks in dieser Reihenfolge aus:
+Die Notebooks in dieser Reihenfolge ausfuehren:
 
 1. `notebooks/00_env_check.ipynb`
 2. `notebooks/01_muc_bezirke_und_bevoelkerung.ipynb`
@@ -48,43 +58,53 @@ Fuehre die Notebooks in dieser Reihenfolge aus:
 5. `notebooks/04_mobility_muc.ipynb`
 6. `notebooks/05_active_index_setup.ipynb`
 
-Hinweis: Am stabilsten ist `Restart & Run All` je Notebook.
-
-## Wichtigste Outputs
-
-Nach erfolgreichem Lauf:
-- `data/processed/muc_active_city_index.csv`
-- `data/processed/muc_active_city_index.geojson`
-- `data/processed/muc_active_city_index.gpkg`
-- `data/processed/muc_active_city_quality_index.csv` (Enhanced/Quality-Teil)
-- `data/processed/muc_bezirke_parks.geojson`
+Empfehlung: Pro Notebook `Restart & Run All` verwenden.
 
 ## Inhalte je Notebook (kurz)
 
-- `01_muc_bezirke_und_bevoelkerung.ipynb`: Bezirksbasis, Bevoelkerung, Flaeche, Dichte
-- `02_osm_parks_muc.ipynb`: Park-Indikatoren pro Bezirk (Anzahl, Flaeche, Anteile)
-- `03_osm_sport_muc.ipynb`: Sport-Indikatoren pro Bezirk (Anzahl, Flaeche, Anteile)
-- `04_mobility_muc.ipynb`: OePNV- und Radwege-Indikatoren
-- `05_active_index_setup.ipynb`: Indexbildung, Robustheit, optionale Qualitaetsindikatoren, Export
+- `00_env_check`: Environment- und Datenbasis-Checks
+- `01_muc_bezirke_und_bevoelkerung`: Bezirksbasis, Bevoelkerung, Flaeche, Dichte
+- `02_osm_parks_muc`: Park-Indikatoren pro Bezirk
+- `03_osm_sport_muc`: Sport-Indikatoren pro Bezirk
+- `04_mobility_muc`: OePNV- und Radwege-Indikatoren
+- `05_active_index_setup`: Normalisierung, Gewichtung, Index, Sensitivitaet, Exporte
 
-## Notebook-Cleanup (optional)
+## Wichtigste Outputs
+
+Finale Daten (`data/processed/`):
+- `muc_active_city_index.csv`
+- `muc_active_city_index.geojson`
+- `muc_active_city_index.gpkg`
+- `muc_active_city_quality_index.csv`
+- `muc_bezirke_parks.geojson`
+- `muc_bezirke_sport.geojson`
+- `muc_bezirke_mobility.geojson`
+
+Berichtsartefakte (`outputs/`):
+- `outputs/figures/01_bezirke_bevoelkerung/`
+- `outputs/figures/02_parks/`
+- `outputs/figures/03_sport/`
+- `outputs/figures/04_mobility/`
+- `outputs/figures/05_active_index/`
+- `outputs/tables/...` analog je Notebook
+
+## Notebook-Cleanup (fuer saubere Commits)
 
 ```bash
 python scripts/clean_notebooks.py
 ```
 
 Wirkung:
-- bereinigte Zell-Metadaten,
-- Outputs und Execution-Counts entfernt (saubere Commits).
+- setzt `execution_count` auf `null`
+- entfernt Output-Objekte
+- reduziert Notebook-Diffs in Git
 
+## Methodik und Dokumentation
 
-## Methodik
+- Methodik: `docs/methodik.md`
+- Interaktive Index-Uebersicht: `docs/index_overview.html`
 
-Details in:
-- `docs/methodik.md`
-
-## Hinweise zur Reproduzierbarkeit
+## Reproduzierbarkeit / Hinweise
 
 - Notebook-Pfade sind relativ zum `notebooks/`-Ordner (`Path("..")`).
-- OSM-basierte Schritte koennen sich ueber die Zeit leicht aendern.
-
+- OSM-basierte Ergebnisse koennen sich zeitlich leicht aendern.
