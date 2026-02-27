@@ -73,15 +73,9 @@ python scripts/clean_notebooks.py
 ```
 
 Wirkung:
-- einheitliche Intro-Struktur je Notebook,
 - bereinigte Zell-Metadaten,
 - Outputs und Execution-Counts entfernt (saubere Commits).
 
-## Validierung (empfohlen)
-
-- Notebook JSON-Validitaet pruefen (z. B. via `nbformat.validate`)
-- Nach groesseren Aenderungen mindestens Notebook 05 komplett ausfuehren
-- Exportdateien in `data/processed/` auf Aktualitaet pruefen
 
 ## Methodik
 
@@ -92,4 +86,4 @@ Details in:
 
 - Notebook-Pfade sind relativ zum `notebooks/`-Ordner (`Path("..")`).
 - OSM-basierte Schritte koennen sich ueber die Zeit leicht aendern.
-- `notebooks/cache/` enthaelt zwischengespeicherte API-Antworten.
+
